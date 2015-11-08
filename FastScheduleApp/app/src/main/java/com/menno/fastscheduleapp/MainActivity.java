@@ -40,7 +40,8 @@ public class MainActivity extends Activity
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        weeks = Info.weeks;
+        weeks = Info.getInstance().getWeeks(); // .weeks;
+        Log.e("JSON Parser", "weeks size" + weeks.size());
         setContentView(new DrawView(this));
     }
 
@@ -85,7 +86,6 @@ public class MainActivity extends Activity
 
     private double changeSelectedMenuItemAngleDays(double angle)
     {
-
         Boolean up = true;
         if(angle < 0) {
             angle *=-1;
@@ -498,7 +498,6 @@ public class MainActivity extends Activity
             {
                 extraAngle = (int)difAngle;
             }
-
             DrawAngleText(canvas, x, y, weeks.get(first).MakeString(), 32,15+extraAngle, 255, Color.WHITE);
             DrawAngleText(canvas, x, y, weeks.get(selectedMenuWeek).MakeString(), 32,45+extraAngle, 255, Color.WHITE);
             DrawAngleText(canvas, x, y, weeks.get(last).MakeString(), 32,75+extraAngle, 255, Color.WHITE);

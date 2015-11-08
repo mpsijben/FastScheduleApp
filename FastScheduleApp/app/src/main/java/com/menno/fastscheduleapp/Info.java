@@ -25,7 +25,8 @@ import java.util.List;
 
 public class Info {
 
-    public static List<Week> weeks = new ArrayList<Week>();
+    private static List<Week> weeks = new ArrayList<Week>();
+    private static final Info instance = new Info();
 
     public static Calendar DateToCalendar(Date date){
         Calendar cal = Calendar.getInstance();
@@ -33,9 +34,20 @@ public class Info {
         return cal;
     }
 
-    public Info()
+    public static Info getInstance() {
+        return instance;
+    }
+
+    protected Info()
     {
-        new Task1().execute();
+        LoadTempData();
+        Log.e("JSON Parser", "weeks size in Info" + weeks.size());
+        //new Task1().execute();
+    }
+
+    public List<Week> getWeeks()
+    {
+        return weeks;
     }
 
     public void LoadTempData()
