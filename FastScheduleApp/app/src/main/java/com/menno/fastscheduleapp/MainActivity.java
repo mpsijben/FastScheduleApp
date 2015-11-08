@@ -48,6 +48,7 @@ public class MainActivity extends Activity
     public void CloseApp()
     {
         this.finish();
+        overridePendingTransition(0, 0);
     }
 
     public static Calendar DateToCalendar(Date date){
