@@ -6,9 +6,7 @@ package com.menno.fastscheduleapp;
  */
 
 import android.app.Activity;
-import android.app.ActivityManager;
 import android.content.Context;
-import android.content.pm.ConfigurationInfo;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
@@ -17,7 +15,6 @@ import android.graphics.PorterDuff;
 import android.graphics.Rect;
 import android.graphics.RectF;
 import android.graphics.PorterDuffXfermode;
-import android.opengl.GLSurfaceView;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.GestureDetector;
@@ -39,30 +36,13 @@ public class MainActivity extends Activity
     private int selectedMenuDay = 2;
     private ShakeListener mShaker;
     private List<Week> weeks;
-    private GLSurfaceView myView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         weeks = Info.getInstance().getWeeks(); // .weeks;
         Log.e("JSON Parser", "weeks size" + weeks.size());
-
-        myView = new AnimationView(this);
-
-
-        setContentView(myView);
-    }
-
-    @Override
-    protected void onPause() {
-        super.onPause();
-        myView.onPause();
-    }
-
-    @Override
-    protected void onResume() {
-        super.onResume();
-        myView.onResume();
+        setContentView(new DrawView(this));
     }
 
     public void CloseApp()
